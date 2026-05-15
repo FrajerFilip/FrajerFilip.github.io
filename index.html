@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="cs">
 
 <head>
@@ -210,9 +210,7 @@
         <!-- GitHub Pages nepodporuje PHP -->
         <!-- Použij Formspree -->
 
-        <form action="https://formspree.io/f/TVE_ID"
-              method="POST"
-              class="reservation-form">
+        <form action="https://formspree.io/f/TVE_ID" method="POST" class="reservation-form">
 
             <input type="text" name="jmeno" placeholder="Jméno a příjmení" required>
 
@@ -289,11 +287,7 @@
 
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2563.123456789!2d14.4378!3d50.0755!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470b939c0970798b%3A0xf3c5e5b6f6d8!2sPrague!5e0!3m2!1sen!2scz!4v1710000000000"
-                    width="100%"
-                    height="300"
-                    style="border:0;"
-                    allowfullscreen=""
-                    loading="lazy"
+                    width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
 
@@ -372,19 +366,75 @@
         // FAQ
         // =========================
 
-        const faqQuestions = document.querySelectorAll(".faq-question");
+        const faqItems = document.querySelectorAll(".faq-item");
 
-        faqQuestions.forEach(question => {
+        faqItems.forEach(item => {
+
+            const question = item.querySelector(".faq-question");
 
             question.addEventListener("click", () => {
 
-                const answer = question.nextElementSibling;
+                // zavře ostatní FAQ (accordion efekt)
+                faqItems.forEach(el => {
+                    if (el !== item) {
+                        el.classList.remove("active");
+                    }
+                });
 
-                answer.classList.toggle("active");
+                // přepne aktuální
+                item.classList.toggle("active");
 
             });
 
         });
+
+
+        // =========================
+        // PREMIUM CAROUSEL
+        // =========================
+
+
+        const track = document.querySelector(".carousel-track");
+        const items = document.querySelectorAll(".carousel-item");
+        const prevBtn = document.querySelector(".carousel-btn.prev");
+        const nextBtn = document.querySelector(".carousel-btn.next");
+
+        let index = 0;
+
+        function updateCarousel() {
+
+            const width = items[0].offsetWidth;
+            track.style.transform = `translateX(${-index * width}px)`;
+
+        }
+
+        nextBtn.addEventListener("click", () => {
+
+            index++;
+
+            // pokud jsme na konci → vrať na začátek
+            if (index >= items.length) {
+                index = 0;
+            }
+
+            updateCarousel();
+
+        });
+
+        prevBtn.addEventListener("click", () => {
+
+            index--;
+
+            if (index < 0) {
+                index = items.length - 1;
+            }
+
+            updateCarousel();
+
+        });
+
+        // fix při resize
+        window.addEventListener("resize", updateCarousel);
 
 
         // =========================
@@ -436,6 +486,24 @@
             document.getElementById("seconds").innerText = seconds;
 
         }, 1000);
+
+        // =========================
+        // ANIMACE
+        // =========================
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener("click", function (e) {
+                e.preventDefault();
+
+                const target = document.querySelector(this.getAttribute("href"));
+
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
 
     </script>
 

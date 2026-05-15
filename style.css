@@ -266,13 +266,13 @@ h2 {
 }
 
 .faq-answer {
-    display: none;
-    padding: 0 20px 20px;
-    transition: all 0.3s ease;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
 }
 
 .faq-item.active .faq-answer {
-    display: block;
+    max-height: 200px;
 }
 
 .reservation-form {

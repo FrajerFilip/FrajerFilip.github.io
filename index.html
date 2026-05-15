@@ -1,22 +1,3 @@
-<?php
-$expozice = [];
-
-if (($handle = fopen("expozice.csv", "r")) !== FALSE) {
-    fgetcsv($handle, 1000, ";");
-
-    while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
-        $expozice[] = [
-            'nazev' => $data[0],
-            'popis' => $data[1],
-            'kategorie' => $data[2],
-            'obrazek' => $data[3]
-        ];
-    }
-
-    fclose($handle);
-}
-?>
-
 <!DOCTYPE html> 
 <html lang="cs">
 
@@ -28,6 +9,7 @@ if (($handle = fopen("expozice.csv", "r")) !== FALSE) {
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 </head>
@@ -35,7 +17,9 @@ if (($handle = fopen("expozice.csv", "r")) !== FALSE) {
 <body>
 
     <header class="hero">
+
         <nav class="navbar">
+
             <div class="logo">
                 <img src="img/logo.png" alt="Logo muzea">
                 <span>Muzeum Frajer</span>
@@ -53,49 +37,75 @@ if (($handle = fopen("expozice.csv", "r")) !== FALSE) {
             <div class="burger" id="burger">
                 ☰
             </div>
+
         </nav>
 
         <div class="hero-content">
             <h1>Objevte historii a umění</h1>
-            <p>Moderní muzeum s interaktivními expozicemi a unikátními výstavami.</p>
-            <a href="#rezervace" class="btn">Rezervovat vstupenku</a>
+
+            <p>
+                Moderní muzeum s interaktivními expozicemi a unikátními výstavami.
+            </p>
+
+            <a href="#rezervace" class="btn">
+                Rezervovat vstupenku
+            </a>
         </div>
+
     </header>
 
     <section class="countdown-section">
+
         <h2>Nová výstava začíná za:</h2>
 
         <div id="countdown">
-            <div><span id="days">00</span>
+
+            <div>
+                <span id="days">00</span>
                 <p>Dní</p>
             </div>
-            <div><span id="hours">00</span>
+
+            <div>
+                <span id="hours">00</span>
                 <p>Hodin</p>
             </div>
-            <div><span id="minutes">00</span>
+
+            <div>
+                <span id="minutes">00</span>
                 <p>Minut</p>
             </div>
-            <div><span id="seconds">00</span>
+
+            <div>
+                <span id="seconds">00</span>
                 <p>Sekund</p>
             </div>
+
         </div>
+
     </section>
 
+    <!-- EXPOZICE -->
     <section id="expozice" class="section">
+
         <h2>Naše expozice</h2>
 
         <div class="cards" id="cards-container">
-            <!-- Karty se načtou z CSV -->
+            <!-- Karty se načtou automaticky z CSV -->
         </div>
+
     </section>
 
+    <!-- PREMIUM -->
     <section id="premium" class="section premium-section">
+
         <h2>Prémiové výstavy</h2>
 
         <div class="carousel">
+
             <button class="carousel-btn prev">❮</button>
 
             <div class="carousel-track-container">
+
                 <div class="carousel-track">
 
                     <div class="carousel-item">
@@ -114,16 +124,22 @@ if (($handle = fopen("expozice.csv", "r")) !== FALSE) {
                     </div>
 
                 </div>
+
             </div>
 
             <button class="carousel-btn next">❯</button>
+
         </div>
+
     </section>
 
+    <!-- RECENZE -->
     <section id="recenze" class="section reviews">
+
         <h2>Recenze návštěvníků</h2>
 
         <div class="review-grid">
+
             <div class="review-card">
                 <p>„Krásné prostředí a úžasné výstavy.“</p>
                 <h4>– Jana K.</h4>
@@ -138,13 +154,18 @@ if (($handle = fopen("expozice.csv", "r")) !== FALSE) {
                 <p>„Výborný zážitek pro celou rodinu.“</p>
                 <h4>– Lucie T.</h4>
             </div>
+
         </div>
+
     </section>
 
+    <!-- FAQ -->
     <section id="faq" class="section faq">
+
         <h2>Často kladené dotazy</h2>
 
         <div class="faq-item">
+
             <button class="faq-question">
                 Jaká je otevírací doba?
             </button>
@@ -152,9 +173,11 @@ if (($handle = fopen("expozice.csv", "r")) !== FALSE) {
             <div class="faq-answer">
                 Pondělí až neděle od 9:00 do 19:00.
             </div>
+
         </div>
 
         <div class="faq-item">
+
             <button class="faq-question">
                 Je možné fotografovat?
             </button>
@@ -162,9 +185,11 @@ if (($handle = fopen("expozice.csv", "r")) !== FALSE) {
             <div class="faq-answer">
                 Ano, bez použití blesku.
             </div>
+
         </div>
 
         <div class="faq-item">
+
             <button class="faq-question">
                 Je muzeum bezbariérové?
             </button>
@@ -172,13 +197,22 @@ if (($handle = fopen("expozice.csv", "r")) !== FALSE) {
             <div class="faq-answer">
                 Ano, celé muzeum je plně bezbariérové.
             </div>
+
         </div>
+
     </section>
 
+    <!-- REZERVACE -->
     <section id="rezervace" class="section reservation">
+
         <h2>Rezervace vstupenek</h2>
 
-        <form action="rezervace.php" method="POST" class="reservation-form">
+        <!-- GitHub Pages nepodporuje PHP -->
+        <!-- Použij Formspree -->
+
+        <form action="https://formspree.io/f/TVE_ID"
+              method="POST"
+              class="reservation-form">
 
             <input type="text" name="jmeno" placeholder="Jméno a příjmení" required>
 
@@ -191,11 +225,13 @@ if (($handle = fopen("expozice.csv", "r")) !== FALSE) {
             <input type="number" name="osoby" placeholder="Počet osob" min="1" required>
 
             <select name="typ" required>
+
                 <option value="">Typ vstupenky</option>
                 <option>Dospělý</option>
                 <option>Student</option>
                 <option>Dítě</option>
                 <option>Senior</option>
+
             </select>
 
             <textarea name="poznamka" placeholder="Poznámka"></textarea>
@@ -203,10 +239,14 @@ if (($handle = fopen("expozice.csv", "r")) !== FALSE) {
             <button type="submit" class="btn">
                 Odeslat rezervaci
             </button>
+
         </form>
+
     </section>
 
+    <!-- VSTUPNE -->
     <section class="section tickets">
+
         <h2>Vstupné</h2>
 
         <div class="ticket-grid">
@@ -227,35 +267,178 @@ if (($handle = fopen("expozice.csv", "r")) !== FALSE) {
             </div>
 
         </div>
+
     </section>
 
+    <!-- KONTAKT -->
     <section id="kontakt" class="section contact">
+
         <h2>Kontakt</h2>
 
         <div class="contact-wrapper">
 
             <div class="contact-info">
+
                 <p><strong>Adresa:</strong> Praha 1, Česká republika</p>
                 <p><strong>Telefon:</strong> +420 777 777 777</p>
                 <p><strong>Email:</strong> info@museum.cz</p>
+
             </div>
 
             <div class="map">
+
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2563.123456789!2d14.4378!3d50.0755!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470b939c0970798b%3A0xf3c5e5b6f6d8!2sPrague!5e0!3m2!1sen!2scz!4v1710000000000"
-                    width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                    width="100%"
+                    height="300"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
+
             </div>
 
         </div>
+
     </section>
 
     <footer>
         <p>© 2026 Museum Praha | MMK závěrečná práce</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+
+        // =========================
+        // CSV -> EXPOZICE
+        // =========================
+
+        async function loadCSV() {
+
+            const response = await fetch("expozice.csv");
+            const text = await response.text();
+
+            const rows = text.trim().split(/\r?\n/).slice(1);
+
+            const container = document.getElementById("cards-container");
+
+            rows.forEach(row => {
+
+                const data = row.split(";");
+
+                if (data.length < 4) return;
+
+                const expo = {
+                    nazev: data[0],
+                    popis: data[1],
+                    kategorie: data[2],
+                    obrazek: data[3]
+                };
+
+                const card = `
+                    <div class="card">
+
+                        <img src="${expo.obrazek}" alt="${expo.nazev}">
+
+                        <div class="card-content">
+
+                            <span class="category">
+                                ${expo.kategorie}
+                            </span>
+
+                            <h3>
+                                ${expo.nazev}
+                            </h3>
+
+                            <p>
+                                ${expo.popis}
+                            </p>
+
+                        </div>
+
+                    </div>
+                `;
+
+                container.innerHTML += card;
+
+            });
+
+        }
+
+        loadCSV();
+
+
+        // =========================
+        // FAQ
+        // =========================
+
+        const faqQuestions = document.querySelectorAll(".faq-question");
+
+        faqQuestions.forEach(question => {
+
+            question.addEventListener("click", () => {
+
+                const answer = question.nextElementSibling;
+
+                answer.classList.toggle("active");
+
+            });
+
+        });
+
+
+        // =========================
+        // BURGER MENU
+        // =========================
+
+        const burger = document.getElementById("burger");
+        const navLinks = document.querySelector(".nav-links");
+
+        burger.addEventListener("click", () => {
+
+            navLinks.classList.toggle("active");
+
+        });
+
+
+        // =========================
+        // COUNTDOWN
+        // =========================
+
+        const targetDate = new Date("2026-12-31T00:00:00").getTime();
+
+        setInterval(() => {
+
+            const now = new Date().getTime();
+
+            const distance = targetDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+
+            const hours = Math.floor(
+                (distance % (1000 * 60 * 60 * 24))
+                / (1000 * 60 * 60)
+            );
+
+            const minutes = Math.floor(
+                (distance % (1000 * 60 * 60))
+                / (1000 * 60)
+            );
+
+            const seconds = Math.floor(
+                (distance % (1000 * 60))
+                / 1000
+            );
+
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours;
+            document.getElementById("minutes").innerText = minutes;
+            document.getElementById("seconds").innerText = seconds;
+
+        }, 1000);
+
+    </script>
+
 </body>
 
 </html>

@@ -207,10 +207,7 @@
 
         <h2>Rezervace vstupenek</h2>
 
-        <!-- GitHub Pages nepodporuje PHP -->
-        <!-- Použij Formspree -->
-
-        <form action="https://formspree.io/f/TVE_ID" method="POST" class="reservation-form">
+        <form id="reservationForm" class="reservation-form">
 
             <input type="text" name="jmeno" placeholder="Jméno a příjmení" required>
 
@@ -503,6 +500,32 @@
                     });
                 }
             });
+        });
+
+        // =========================
+        // Rezervace
+        // =========================
+
+        document.getElementById("reservationForm").addEventListener("submit", function (e) {
+
+            e.preventDefault();
+
+            const data = {
+                jmeno: this.jmeno.value,
+                email: this.email.value,
+                datum: this.datum.value,
+                cas: this.cas.value,
+                osoby: this.osoby.value,
+                typ: this.typ.value,
+                poznamka: this.poznamka.value
+            };
+
+            console.log("Rezervace:", data);
+
+            alert("✅ Rezervace byla úspěšně odeslána!");
+
+            this.reset();
+
         });
 
     </script>

@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <br>
 
-            <a href='index.php' class='btn'>Zpět na hlavní stránku</a>
+            <a href='index.html' class='btn'>Zpět na hlavní stránku</a>
         </section>
 
     </body>
